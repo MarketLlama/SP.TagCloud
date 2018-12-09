@@ -1,0 +1,22 @@
+{
+  "@pnp/generator-spfx": {
+    "framework": "react",
+    "pnpFramework": "react",
+    "pnp-libraries": [
+      "jquery@3",
+      "@pnp/pnpjs",
+      "@pnp/spfx-property-controls",
+      "@pnp/spfx-controls-react"
+    ]
+  },
+  "@microsoft/generator-sharepoint": {
+    "framework": "react",
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.6.0",
+    "libraryName": "tag-cloud",
+    "libraryId": "f6e7987c-24b3-4205-8b99-34f62baca589",
+    "packageManager": "npm",
+    "componentType": "webpart"
+  }
+}
