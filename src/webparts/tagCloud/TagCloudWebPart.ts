@@ -11,6 +11,8 @@ import * as strings from 'TagCloudWebPartStrings';
 import TagCloud from './components/TagCloud';
 import { ITagCloudProps } from './components/ITagCloudProps';
 import { loadTheme } from 'office-ui-fabric-react';
+import "@babel/polyfill";
+import "@pnp/polyfill-ie11";
 
 loadTheme({
   palette: {

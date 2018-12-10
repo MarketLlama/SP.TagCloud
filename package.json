@@ -11,11 +11,13 @@
     "test": "gulp test"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "@microsoft/sp-core-library": "1.6.0",
     "@microsoft/sp-lodash-subset": "1.6.0",
     "@microsoft/sp-office-ui-fabric-core": "1.6.0",
     "@microsoft/sp-webpart-base": "1.6.0",
     "@pnp/pnpjs": "^1.2.3",
+    "@pnp/polyfill-ie11": "^1.0.0",
     "@pnp/sp-clientsvc": "^1.2.6",
     "@pnp/sp-taxonomy": "^1.2.6",
     "@pnp/spfx-controls-react": "1.9.0",

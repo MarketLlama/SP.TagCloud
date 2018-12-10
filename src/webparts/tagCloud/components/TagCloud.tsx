@@ -1,13 +1,13 @@
 import * as React from 'react';
 import styles from './TagCloud.module.scss';
 import { ITagCloudProps } from './ITagCloudProps';
-import { ITagCloudState } from './ITagCloudState'
+import { ITagCloudState } from './ITagCloudState';
 import { escape } from '@microsoft/sp-lodash-subset';
 import { TagCloud } from "react-tagcloud";
 import { Web, CamlQuery } from '@pnp/sp';
 import * as CamlBuilder from 'camljs';
 import * as _ from 'underscore';
-import { TooltipHost } from 'office-ui-fabric-react';
+import { Icon } from 'office-ui-fabric-react/lib/Icon';
 
 export default class SPTagCloud extends React.Component<ITagCloudProps, ITagCloudState> {
   private _web : Web;
@@ -15,9 +15,24 @@ export default class SPTagCloud extends React.Component<ITagCloudProps, ITagClou
   private _data = [];
   
   private options = {
-    luminosity: 'dark',
-    hue: 'green'
+    hue: 'green',
+    luminosity : 'dark'
   };
+
+  private _customRenderer = (tag, size, color) => (
+    <span key={tag.value}
+          style={{
+            fontSize: `${size}px`,
+            border: `2px solid ${color}`,
+            backgroundColor : `${color}`,
+            margin: '3px',
+            padding: '5px',
+            display: 'inline-block',
+            color: 'white',
+            borderRadius: '10px',
+            cursor : 'pointer'
+          }}><Icon iconName="Tag" /> {tag.value}</span>
+  )
   constructor(props) {
     super(props);
     this.state = {
@@ -30,11 +45,12 @@ export default class SPTagCloud extends React.Component<ITagCloudProps, ITagClou
       <div className={ styles.tagCloud }>
         <div className={ styles.container }>
           <div className={ styles.row }>
-          <TagCloud minSize={12}
-            maxSize={35}
+          <TagCloud minSize={8}
+            maxSize={24}
             colorOptions={this.options}
             tags={this.state.data}
-            onClick={tag => console.log('clicking on tag:', tag)} />
+            renderer={this._customRenderer}
+            onClick={tag => this._openSearch(tag)} />
           </div>
         </div>
       </div>
@@ -51,6 +67,12 @@ export default class SPTagCloud extends React.Component<ITagCloudProps, ITagClou
       
     return query.ToString();
 }
+
+  public _openSearch = (tag)=>{
+    let siteURL = this.props.context.pageContext.site.absoluteUrl;
+    let searchURL = `${siteURL}/_layouts/15/osssearchresults.aspx?u=${siteURL}&k=owstaxIdW365RelatedTopic:${tag.value}`;
+    window.open(encodeURI(searchURL), "_blank");
+  }
 
 private async _getTermsWithCAML(web: Web, listTitle: string) {
   return new Promise(async(resolve, reject) => {
