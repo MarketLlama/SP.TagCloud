@@ -13,7 +13,36 @@ import { ITagCloudProps } from './components/ITagCloudProps';
 import { loadTheme } from 'office-ui-fabric-react';
 import "@babel/polyfill";
 import "@pnp/polyfill-ie11";
+/** IE9, IE10 and IE11 requires all of the following polyfills. **/
+import 'core-js/es6/symbol';
+import 'core-js/es6/object';
+import 'core-js/es6/function';
+import 'core-js/es6/parse-int';
+import 'core-js/es6/parse-float';
+import 'core-js/es6/number';
+import 'core-js/es6/math';
+import 'core-js/es6/string';
+import 'core-js/es6/date';
+import 'core-js/es6/array';
+import 'core-js/es6/regexp';
+if(WeakMap.toString().indexOf('function WeakMap()') === -1)
+{
+     WeakMap = undefined;
+}
+import 'core-js/es6/weak-map';
 
+// Check for native support of Map vs Polyfill
+if(Map.toString().indexOf('function Map()') === -1)
+{
+     Map = undefined;
+}
+import 'core-js/es6/map';
+// Check for native support of Map vs Polyfill
+if(Set.toString().indexOf('function Set()') === -1)
+{
+     Set = undefined;
+}
+import 'core-js/es6/set';
 loadTheme({
   palette: {
     themePrimary: '#5f7800',
