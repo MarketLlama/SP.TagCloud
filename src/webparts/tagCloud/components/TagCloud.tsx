@@ -13,7 +13,7 @@ export default class SPTagCloud extends React.Component<ITagCloudProps, ITagClou
   private _web : Web;
   private _listName : string = 'Pages';
   private _data = [];
-  
+
   private options = {
     hue: 'green',
     luminosity : 'dark'
@@ -30,8 +30,9 @@ export default class SPTagCloud extends React.Component<ITagCloudProps, ITagClou
             display: 'inline-block',
             color: 'white',
             borderRadius: '10px',
+            boxShadow : '2px 2px 1px rgba(128, 128, 128, 0.62)',
             cursor : 'pointer'
-          }}><Icon iconName="Tag" /> {tag.value}</span>
+          }}>{tag.value}</span>
   )
   constructor(props) {
     super(props);
@@ -60,11 +61,11 @@ export default class SPTagCloud extends React.Component<ITagCloudProps, ITagClou
     let xml = new CamlBuilder().View(["W365_RelatedTopic"])
       .Query().Where().ModStatField("_ModerationStatus").IsApproved().And()
       .LookupMultiField("W365_RelatedTopic").IsNotNull().ToString();
-      
+
       let query = CamlBuilder.FromXml(xml).ModifyWhere().AppendAnd()
         .TextField("ContentType").EqualTo("Wizdom Newspage").Or()
         .TextField("ContentType").EqualTo("Syngenta Positions Article");
-      
+
     return query.ToString();
 }
 
@@ -95,7 +96,7 @@ private async _getTermsWithCAML(web: Web, listTitle: string) {
   private async _getTerms() {
     let webUrl : string = this.props.context.pageContext.web.absoluteUrl + '/articles';
     this._web = new Web(webUrl);
-    
+
       try {
           let items = await this._getTermsWithCAML(this._web, this._listName);
           let string = JSON.stringify(items);
