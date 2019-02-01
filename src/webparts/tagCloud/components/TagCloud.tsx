@@ -30,6 +30,7 @@ export default class SPTagCloud extends React.Component<ITagCloudProps, ITagClou
             display: 'inline-block',
             color: 'white',
             borderRadius: '10px',
+            boxShadow : '2px 2px 1px rgba(128, 128, 128, 0.62)',
             cursor : 'pointer'
           }}><Icon iconName="Tag" /> {tag.value}</span>
   )
