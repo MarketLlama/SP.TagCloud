@@ -1,5 +1,11 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
+
+import 'core-js/es6/array';
+import 'es6-map/implement';
+import 'core-js/es6/promise';
+import 'whatwg-fetch';
+
 import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
@@ -11,8 +17,6 @@ import * as strings from 'TagCloudWebPartStrings';
 import TagCloud from './components/TagCloud';
 import { ITagCloudProps } from './components/ITagCloudProps';
 import { loadTheme } from 'office-ui-fabric-react';
-import "@babel/polyfill";
-import "@pnp/polyfill-ie11";
 
 loadTheme({
   palette: {

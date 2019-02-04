@@ -3,7 +3,7 @@
   "solution": {
     "name": "tag-cloud-client-side-solution",
     "id": "f6e7987c-24b3-4205-8b99-34f62baca589",
-    "version": "1.0.0.1",
+    "version": "1.0.0.2",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true
   },
